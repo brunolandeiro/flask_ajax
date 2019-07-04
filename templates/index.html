@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script type=text/javascript>
+    $(function() {
+      $('select[name="a"]').change(function() {
+        $.getJSON('/getSelect', {
+          a: $('select[name="a"]').val(),
+        }, function(data) {
+          $("#select-id").empty();
+          let list = data.result;
+          $.each( list, function( key, value ) {
+            $('#select-id').append($('<option/>').text(value));
+          });
+        });
+        return false;
+      });
+    });
+  </script>
+</head>
+<body>
+
+
+    <h1>Flask e Ajax</h1>
+    <select name='a'>
+      <option>Selecione um</option>
+      <option value='1'>a-c</option>
+      <option value='2'>d-f</option>
+      <option value='3'>g-i</option>
+    </select>
+    <select id='select-id'>
+
+    </select>
+
+
+</body>
+</html>
+
